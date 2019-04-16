@@ -226,6 +226,8 @@ export class MotionListComponent extends ListViewBaseComponent<ViewMotion, Motio
                     this.motionCsvExport.exportMotionList(data, result.content, result.metaInfo);
                 } else if (result.format === 'xlsx') {
                     this.motionXlsxExport.exportMotionList(data, result.metaInfo);
+                } else if (result.format === 'altxlsx') {
+                    this.motionXlsxExport.exportMotionOverview(data);
                 }
             }
         });

@@ -113,8 +113,16 @@ export class MotionExportDialogComponent implements OnInit {
      */
     public ngOnInit(): void {
         this.exportForm.get('format').valueChanges.subscribe((value: string) => {
+            // disable meta-info and clear every selection
+            if (value === 'altxlsx') {
+                this.exportForm.get('metaInfo').disable();
+                this.exportForm.get('metaInfo').setValue(null);
+            } else {
+                this.exportForm.get('metaInfo').enable();
+            }
+
             // disable content for xslx
-            if (value === 'xlsx') {
+            if (value === 'xlsx' || value === 'altxlsx') {
                 // disable the content selection
                 this.exportForm.get('content').disable();
                 // remove the selection of "content"
@@ -123,7 +131,7 @@ export class MotionExportDialogComponent implements OnInit {
                 this.exportForm.get('content').enable();
             }
 
-            if (value === 'csv' || value === 'xlsx') {
+            if (value === 'csv' || value === 'xlsx' || value === 'altxlsx') {
                 // disable and deselect "lnMode"
                 this.exportForm.get('lnMode').setValue(this.lnMode.None);
                 this.exportForm.get('lnMode').disable();
@@ -148,11 +156,13 @@ export class MotionExportDialogComponent implements OnInit {
                 // }
 
                 // remove the selection of "votingResult"
-                let metaInfoVal: string[] = this.exportForm.get('metaInfo').value;
-                metaInfoVal = metaInfoVal.filter(info => {
-                    return info !== 'polls';
-                });
-                this.exportForm.get('metaInfo').setValue(metaInfoVal);
+                if (this.exportForm.get('metaInfo').value) {
+                    let metaInfoVal: string[] = this.exportForm.get('metaInfo').value;
+                    metaInfoVal = metaInfoVal.filter(info => {
+                        return info !== 'polls';
+                    });
+                    this.exportForm.get('metaInfo').setValue(metaInfoVal);
+                }
 
                 // disable "Diff Version" and "Voting Result"
                 this.votingResultButton.disabled = true;

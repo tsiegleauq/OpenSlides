@@ -13,6 +13,7 @@ import { OverlayService } from 'app/core/ui-services/overlay.service';
 import { DEFAULT_AUTH_TYPE } from 'app/shared/models/users/user';
 import { BaseViewComponent } from 'app/site/base/base-view';
 import { ViewUser } from 'app/site/users/models/view-user';
+import { RtcService } from 'app/core/core-services/rtc.service';
 
 @Component({
     selector: 'os-user-menu',
@@ -46,7 +47,8 @@ export class UserMenuComponent extends BaseViewComponent implements OnInit {
         private overlayService: OverlayService, // private vp: ViewportService,
         private loginDataService: LoginDataService,
         private configService: ConfigService,
-        private router: Router
+        private router: Router,
+        private rtcService: RtcService
     ) {
         super(titleService, translate, matSnackBar);
     }
@@ -74,6 +76,10 @@ export class UserMenuComponent extends BaseViewComponent implements OnInit {
         this.configService
             .get<boolean>(this.selfPresentConfStr)
             .subscribe(allowed => (this.allowSelfSetPresent = allowed));
+    }
+
+    public rtcConnect(): void {
+        this.rtcService.connect();
     }
 
     public isOnProfilePage(): boolean {

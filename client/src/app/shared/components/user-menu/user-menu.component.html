@@ -10,6 +10,17 @@
             <span class="menu-text">{{ getLangName() }}</span>
         </a>
         <div *ngIf="user && isLoggedIn">
+            <!-- rtc -->
+            <button
+                mat-menu-item
+                (click)="rtcConnect()"
+            >
+                <mat-icon [color]='' class="menu-icon">
+                    local_phone
+                </mat-icon>
+                <span class="menu-text">{{ 'Connect Voice' | translate}}</span>
+            </button>
+
             <!-- present toggle -->
             <button
                 [ngClass]="{ active: user.is_present }"

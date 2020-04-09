@@ -43,7 +43,11 @@
                             }
                         ],
                         "styles": ["src/styles.scss"],
-                        "scripts": ["node_modules/tinymce/tinymce.min.js"],
+                        "scripts": [
+                            "node_modules/tinymce/tinymce.min.js",
+                            "node_modules/jquery/dist/jquery.min.js",
+                            "src/assets/jitsi/lib-jitsi-meet.min.js"
+                        ],
                         "webWorkerTsConfig": "tsconfig.worker.json"
                     },
                     "configurations": {

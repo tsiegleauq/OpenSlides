@@ -1,19 +1,23 @@
 {
     "/apps/": {
-        "target": "http://localhost:8000",
+        "target": "http://localhost:8888",
         "secure": false
     },
     "/media/": {
-        "target": "http://localhost:8000",
+        "target": "http://localhost:8888",
         "secure": false
     },
     "/rest/": {
-        "target": "http://localhost:8000",
+        "target": "http://localhost:8888",
         "secure": false
     },
     "/ws/": {
-        "target": "ws://localhost:8000",
+        "target": "ws://localhost:8888",
         "secure": false,
         "ws": true
+    },
+    "/jitsi/": {
+        "target": "http://localhost:8000",
+        "secure": false
     }
 }

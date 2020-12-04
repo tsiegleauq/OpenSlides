@@ -1,6 +1,6 @@
 <div class="video-wrapper">
     <div class="player-container" [ngClass]="{ hide: !isUrlOnline }">
-        <video #videoPlayer class="video-js" controls preload="none"></video>
+        <video #videoPlayer class="video-js" controls preload="none" crossorigin="anonymous"></video>
     </div>
     <div *ngIf="!isUrlOnline" class="is-offline-wrapper">
         <ng-container *ngIf="!posterUrl">

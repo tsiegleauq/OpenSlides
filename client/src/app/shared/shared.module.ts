@@ -127,7 +127,7 @@ import { AssignmentPollDetailContentComponent } from './components/assignment-po
 import { GlobalSpinnerComponent } from './components/global-spinner/global-spinner.component';
 import { UserMenuComponent } from './components/user-menu/user-menu.component';
 import { JitsiComponent } from './components/jitsi/jitsi.component';
-import { VjsPlayerComponent } from './components/vjs-player/vjs-player.component';
+import { VideoPlayerComponent } from './components/video-player/video-player.component';
 import { LiveStreamComponent } from './components/live-stream/live-stream.component';
 import { ListOfSpeakersContentComponent } from './components/list-of-speakers-content/list-of-speakers-content.component';
 
@@ -298,7 +298,7 @@ import { ListOfSpeakersContentComponent } from './components/list-of-speakers-co
         MotionPollDetailContentComponent,
         AssignmentPollDetailContentComponent,
         JitsiComponent,
-        VjsPlayerComponent,
+        VideoPlayerComponent,
         LiveStreamComponent,
         ListOfSpeakersContentComponent
     ],
@@ -362,7 +362,7 @@ import { ListOfSpeakersContentComponent } from './components/list-of-speakers-co
         MotionPollDetailContentComponent,
         AssignmentPollDetailContentComponent,
         JitsiComponent,
-        VjsPlayerComponent,
+        VideoPlayerComponent,
         LiveStreamComponent,
         ListOfSpeakersContentComponent
     ],

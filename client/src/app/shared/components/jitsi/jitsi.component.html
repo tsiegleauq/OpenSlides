@@ -61,9 +61,7 @@
                     matTooltip="{{ 'Exit live conference and continue livestream' | translate }}"
                     *ngIf="videoStreamUrl && canSeeLiveStream && !isJitsiDialogOpen"
                 >
-                    <mat-icon color="warn">
-                        meeting_room
-                    </mat-icon>
+                    <mat-icon color="warn"> meeting_room </mat-icon>
                 </button>
 
                 <!-- mute/unmute button -->
@@ -90,7 +88,11 @@
                     (click)="enterConversation()"
                     matTooltip="{{ 'Enter live conference' | translate }}"
                 >
-                    <mat-icon color="primary" [@fadeInOut]="isEnterMeetingRoomVisible" (@fadeInOut.done)="triggerMeetingRoomButtonAnimation()">
+                    <mat-icon
+                        color="primary"
+                        [@fadeInOut]="isEnterMeetingRoomVisible"
+                        (@fadeInOut.done)="triggerMeetingRoomButtonAnimation()"
+                    >
                         meeting_room
                     </mat-icon>
                 </button>
@@ -103,9 +105,7 @@
                     *ngIf="enableJitsi && !isAccessPermitted"
                     [routerLink]="['/agenda/speakers']"
                 >
-                    <mat-icon>
-                        no_meeting_room
-                    </mat-icon>
+                    <mat-icon> no_meeting_room </mat-icon>
                 </a>
             </ng-container>
         </span>
@@ -194,11 +194,11 @@
                 </ng-container>
 
                 <ng-container *ngIf="currentState == state.stream">
-                    <os-vjs-player
+                    <os-video-player
                         [videoUrl]="videoStreamUrl"
                         (started)="onSteamStarted()"
                         *ngIf="(canSeeLiveStream && !streamActiveInAnotherTab) || streamRunning"
-                    ></os-vjs-player>
+                    ></os-video-player>
                     <div class="disconnected" *ngIf="streamActiveInAnotherTab && !streamRunning">
                         <button class="restart-stream-button" mat-button color="warn" (click)="deleteStreamingLock()">
                             <span>{{ 'Restart livestream' | translate }}</span>

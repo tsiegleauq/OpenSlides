@@ -129,6 +129,7 @@ class CoreAppConfig(AppConfig):
             "JITSI_DOMAIN",
             "JITSI_ROOM_NAME",
             "JITSI_ROOM_PASSWORD",
+            "ENABLE_SUPPORT_ROOM",
             "DEMO_USERS",
         ]
         client_settings_dict = {}

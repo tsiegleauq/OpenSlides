@@ -115,6 +115,7 @@ ENABLE_ELECTRONIC_VOTING = False
 # JITSI_DOMAIN = None
 # JITSI_ROOM_NAME = None
 # JITSI_ROOM_PASSWORD = None
+# ENABLE_SUPPORT_ROOM = False
 
 
 # Internationalization

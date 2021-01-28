@@ -74,6 +74,7 @@ x-osserver-env: &default-osserver-env
     JITSI_DOMAIN: "ifenvelse(`JITSI_DOMAIN',)"
     JITSI_ROOM_PASSWORD: "ifenvelse(`JITSI_ROOM_PASSWORD',)"
     JITSI_ROOM_NAME: "ifenvelse(`JITSI_ROOM_NAME',)"
+    ENABLE_SUPPORT_ROOM: "ifenvelse(`ENABLE_SUPPORT_ROOM',)"
     OPENSLIDES_LOG_LEVEL: "ifenvelse(`OPENSLIDES_LOG_LEVEL', INFO)"
     DJANGO_LOG_LEVEL: "ifenvelse(`DJANGO_LOG_LEVEL', INFO)"
     REDIS_HOST: "ifenvelse(`REDIS_HOST', redis)"

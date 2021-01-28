@@ -42,6 +42,7 @@ interface JitsiSettings {
     JITSI_DOMAIN: string;
     JITSI_ROOM_NAME: string;
     JITSI_ROOM_PASSWORD: string;
+    ENABLE_SUPPORT_ROOM: boolean;
 }
 
 interface ConferenceMember {
@@ -84,6 +85,7 @@ export class JitsiComponent extends BaseViewComponentDirective implements OnInit
     private roomName: string;
     private roomPassword: string;
     private jitsiDomain: string;
+    public isSupportEnabled: boolean;
 
     public restricted = false;
     public videoStreamUrl: string;
@@ -315,6 +317,7 @@ export class JitsiComponent extends BaseViewComponentDirective implements OnInit
                 this.jitsiDomain = settings.JITSI_DOMAIN;
                 this.roomName = settings.JITSI_ROOM_NAME;
                 this.roomPassword = settings.JITSI_ROOM_PASSWORD;
+                this.isSupportEnabled = settings.ENABLE_SUPPORT_ROOM;
                 this.constantsLoaded.resolve();
             }
         });
@@ -384,15 +387,18 @@ export class JitsiComponent extends BaseViewComponentDirective implements OnInit
         }
     }
 
-    public async enterConversation(): Promise<void> {
+    public async enterConversation(domain: string = this.jitsiDomain): Promise<void> {
         await this.operator.loaded;
         try {
             await this.userMediaPermService.requestMediaAccess();
             this.storageMap.set(this.RTC_LOGGED_STORAGE_KEY, true).subscribe(() => {});
             this.setConferenceState(ConferenceState.jitsi);
             this.setOptions();
+            if (this.api) {
+                this.api.dispose();
+                this.api = undefined;
+            }
             this.api = new JitsiMeetExternalAPI(this.jitsiDomain, this.options);
-
             const jitsiname = this.userRepo.getShortName(this.operator.user);
             this.api.executeCommand('displayName', jitsiname);
             this.loadApiCallbacks();
@@ -570,6 +576,11 @@ export class JitsiComponent extends BaseViewComponentDirective implements OnInit
     public onSteamStarted(): void {
         this.streamRunning = true;
         this.storageMap.set(this.STREAM_RUNNING_STORAGE_KEY, true).subscribe(() => {});
+    }
+
+    public callSupport(): void {
+        const supportDomain = `${this.jitsiDomain}-SUPPORT`;
+        this.enterConversation(supportDomain);
     }
 
     private onLiveStreamAvailable(liveStreamUrl: string): void {
